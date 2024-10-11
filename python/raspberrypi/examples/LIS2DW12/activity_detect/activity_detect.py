@@ -32,7 +32,7 @@ I2C_BUS         = 0x01             #default use I2C1
 ADDRESS_1       = 0x19             #sensor address 1
 
 class Accelerometer:
-  def __init__(self, activity_callback):
+  def __init__(self, activity_callback=None):
 
     self.activity_callback = activity_callback 
     self.acce = DFRobot_LIS2DW12_I2C(I2C_BUS ,ADDRESS_1)
@@ -152,5 +152,6 @@ class Accelerometer:
         act = self.acce.act_detected()
         if act == True:
           print("Activity Detected")
-          self.activity_callback()
+          if self.activity_callback != None:
+            self.activity_callback()
         time.sleep(0.3)
