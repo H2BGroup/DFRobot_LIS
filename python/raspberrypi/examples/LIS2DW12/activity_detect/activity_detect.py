@@ -84,7 +84,7 @@ class Accelerometer:
 
     #Set wakeup threshold, when the acceleration change exceeds this value, the eWakeUp event will be triggered.
     #The value is within the range.
-    self.acce.set_wakeup_threshold(0.05)
+    self.acce.set_wakeup_threshold(0.035)
 
     '''
       Set power mode:
