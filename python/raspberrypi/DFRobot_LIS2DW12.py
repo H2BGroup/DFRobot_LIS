@@ -443,7 +443,7 @@ class DFRobot_LIS2DW12(object):
       @n            NO_DETECTION         #No detection
       @n            DETECT_ACT           #Detect movement,the chip automatically goes to 12.5 Hz rate in the low-power mode
       @n            DETECT_STATMOTION    #Detect Motion, the chip detects acceleration below a fixed threshold but does not change either rate or operating mode
-    '''!
+    '''
     value1 = self.read_reg(self.REG_WAKE_UP_THS)
     value2 = self.read_reg(self.REG_WAKE_UP_DUR)
     value1 = value1 & (~(1<<6))
@@ -862,9 +862,9 @@ class DFRobot_IIS2DLPC_I2C(DFRobot_LIS2DW12):
       @param reg register address
       @param data written data
     '''
-        self.i2cbus.write_i2c_block_data(self.__addr ,reg,[data])
-        #self.i2cbus.write_byte(self.__addr ,reg)
-        #self.i2cbus.write_byte(self.__addr ,data)
+    self.i2cbus.write_i2c_block_data(self.__addr ,reg,[data])
+    #self.i2cbus.write_byte(self.__addr ,reg)
+    #self.i2cbus.write_byte(self.__addr ,data)
   
   def read_reg(self, reg):
     '''!
@@ -908,16 +908,16 @@ class DFRobot_IIS2DLPC_SPI(DFRobot_LIS2DW12):
       @param reg register address
       @return read data
     '''
-     GPIO.output(self.__cs, GPIO.LOW)
-     self.__spi.writebytes([reg | self.SPI_READ_BIT])
-     time.sleep(0.01)
-     data = self.__spi.readbytes(1)
-     GPIO.output(self.__cs, GPIO.HIGH)
-     return  data[0]
+    GPIO.output(self.__cs, GPIO.LOW)
+    self.__spi.writebytes([reg | self.SPI_READ_BIT])
+    time.sleep(0.01)
+    data = self.__spi.readbytes(1)
+    GPIO.output(self.__cs, GPIO.HIGH)
+    return  data[0]
   
 class DFRobot_LIS2DW12_I2C(DFRobot_LIS2DW12): 
   def __init__(self ,bus ,addr):
-    self.__addr = addr;
+    self.__addr = addr
     super(DFRobot_LIS2DW12_I2C, self).__init__()
     self.i2cbus = smbus.SMBus(bus)
 
