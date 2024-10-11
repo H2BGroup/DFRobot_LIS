@@ -13,7 +13,7 @@
 '''
 
 import sys
-sys.path.append("../..") # set system path to top
+sys.path.append("../../..") # set system path to top
 
 from DFRobot_LIS2DW12 import *
 import time
